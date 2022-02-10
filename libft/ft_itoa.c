@@ -3,70 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 19:50:46 by zarachne          #+#    #+#             */
-/*   Updated: 2021/11/27 19:50:48 by zarachne         ###   ########.fr       */
+/*   Created: 2022/02/08 16:14:37 by aazrael           #+#    #+#             */
+/*   Updated: 2022/02/08 16:14:38 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	len(long n)
+static int	ft_len(int long n)
 {
-	int	size;
+	int			i;
+	long int	ii;
 
-	if (n < 0)
+	i = 1;
+	ii = 10;
+	while (i < 11)
 	{
-		n *= -1;
-		size = 2;
+		if (n < ii)
+			return (i);
+		ii = ii * 10;
+		i++;
 	}
-	else
-		size = 1;
-	while (n > 9)
-	{
-		n /= 10;
-		size++;
-	}
-	return (size);
+	return (1);
 }
 
-char	*ft_convert(char *str, long nb)
+static int	ft_10_st(int r)
 {
-	int	i;
+	unsigned int	n;
 
-	i = len(nb);
-	str[i--] = '\0';
-	if (nb == 0)
+	n = 1;
+	while (--r)
+		n = n * 10;
+	return (n);
+}
+
+static void	ft_help_f(char *res, int i, int neg, int long nl)
+{
+	int	r;
+
+	r = ft_len(nl);
+	while (i < r)
 	{
-		str[0] = 48;
-		return (str);
+		res[i + neg] = (nl / ft_10_st(r - i)) + 48;
+		nl = nl % ft_10_st(r - i);
+		i++;
 	}
-	if (nb < 0)
-	{
-		str[0] = '-';
-		nb = nb * -1;
-	}
-	while (nb > 0)
-	{
-		str[i] = ((nb % 10) + '0');
-		nb = nb / 10;
-		i--;
-	}
-	return (str);
+	res[i + neg] = '\0';
 }
 
 char	*ft_itoa(int n)
 {
-	long	nb;
-	char	*str;
-	int		i;
+	size_t		r;
+	int			neg;
+	char		*res;
+	int long	nl;
+	int			i;
 
-	nb = n;
-	i = len(nb);
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (!str)
+	nl = (int long)n;
+	neg = 0;
+	if (nl < 0)
+	{
+		neg = 1;
+		nl = nl * -1;
+	}
+	r = ft_len(nl);
+	res = (char *) malloc(sizeof(char) * (r + neg + 1));
+	if (NULL == res)
 		return (NULL);
-	ft_convert(str, nb);
-	return (str);
+	i = 0;
+	if (neg)
+		res[0] = '-';
+	ft_help_f(res, i, neg, nl);
+	return (res);
 }

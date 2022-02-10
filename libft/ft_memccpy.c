@@ -3,32 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 19:51:27 by zarachne          #+#    #+#             */
-/*   Updated: 2021/11/27 19:51:29 by zarachne         ###   ########.fr       */
+/*   Created: 2022/02/08 16:14:31 by aazrael           #+#    #+#             */
+/*   Updated: 2022/02/08 16:14:35 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/**
-* Copies bytes (at most n). can copy less than n, stop when found c in src.
-*/
-void	*ft_memccpy(void *dst1, const void *src1, int c, size_t n)
+
+void	*ft_memccpy(void *dst, const void *src, int c, \
+		size_t n)
 {
-	unsigned char	*dst;
-	unsigned char	*src;
+	unsigned char	*x;
+	unsigned char	*y;
+	unsigned char	ucc;
 	size_t			i;
 
-	dst = (unsigned char *)dst1;
-	src = (unsigned char *)src1;
+	ucc = (unsigned char)c;
 	i = 0;
+	x = (unsigned char *)dst;
+	y = (unsigned char *)src;
+	if (dst == 0 && src == 0)
+		return (dst);
 	while (n--)
 	{
-		dst[i] = src[i];
-		if ((unsigned char)c == dst[i])
-			return ((void *)dst + i + 1);
+		x[i] = y[i];
+		if (y[i] == ucc)
+			return (dst + i + 1);
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
