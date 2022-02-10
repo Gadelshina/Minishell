@@ -3,37 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 19:50:07 by zarachne          #+#    #+#             */
-/*   Updated: 2021/11/27 19:59:13 by zarachne         ###   ########.fr       */
+/*   Created: 2022/02/08 16:15:07 by aazrael           #+#    #+#             */
+/*   Updated: 2022/02/08 16:16:05 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+static int	ft_isspace(char c)
+{
+	if (c == '\n' || c == '\f' || c == '\t' || c == '\v' || \
+		c == ' ' || c == '\r')
+		return (1);
+	return (0);
+}
+
 int	ft_atoi(const char *str)
 {
-	unsigned int	i;
-	long			neg;
-	long long		res;
+	int long	res;
+	int			i;
+	int			sign;
 
 	i = 0;
-	neg = 1;
 	res = 0;
-	while (str[i] != '\0' && (str[i] == 32 || str[i] == '\t' || str[i] \
-		== '\n' || str[i] == '\v' || str[i] == '\f' || str[i] == '\r'))
+	sign = 1;
+	while (ft_isspace(str[i]))
 		i++;
-	if (str[i] == '+' || str[i] == '-')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (str[i] == '-')
-			neg = -neg;
-		i++;
+		if (str[i++] == '-')
+			sign = -1;
 	}
-	while (str[i] != '\0' && str[i] >= '0' && str[i] <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		res = res * 10 + (str[i] - 48);
-		i++;
+		if ((res > 922337203685477580 || (res == 922337203685477580 && \
+		(str[i] - '0') > 7)) && sign == 1)
+			return (-1);
+		else if ((res > 922337203685477580 || (res == 922337203685477580 && \
+		 (str[i] - '0') > 8)) && sign == -1)
+			return (0);
+		res = res * 10 + (str[i++] - '0');
 	}
-	return (res * neg);
+	return ((int)res * sign);
 }

@@ -3,99 +3,84 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 19:52:38 by zarachne          #+#    #+#             */
-/*   Updated: 2021/11/27 20:02:03 by zarachne         ###   ########.fr       */
+/*   Created: 2022/02/08 16:13:53 by aazrael           #+#    #+#             */
+/*   Updated: 2022/02/08 16:13:55 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int	ft_nb_words(char const *s, char c)
+static unsigned int	ft_numbers_str(char const *s, char c)
+{
+	size_t			i;
+	unsigned int	n;
+
+	i = 1;
+	n = 0;
+	while (s[i])
+	{
+		if ((s[i] == c) && (s[i - 1] != c))
+			n++;
+		i++;
+	}
+	if (s[i - 1] != c)
+		n++;
+	return (n);
+}
+
+static void	ft_free(char **s, unsigned int n)
+{
+	while (n)
+	{
+		free (s[n]);
+		n--;
+	}
+	free (s);
+}
+
+static char	*ft_sub(const char *s, char c, int pos)
 {
 	unsigned int	i;
-	unsigned int	nb_strs;
+	char			*ret;
 
-	if (!s[0])
-		return (0);
-	i = 0;
-	nb_strs = 0;
-	while (s[i] && s[i] == c)
-		i++;
+	i = pos;
 	while (s[i])
 	{
 		if (s[i] == c)
 		{
-			nb_strs++;
-			while (s[i] && s[i] == c)
-				i++;
-			continue ;
+			ret = ft_substr(s, pos, (i - pos));
+			return (ret);
 		}
 		i++;
 	}
-	if (s[i - 1] != c)
-		nb_strs++;
-	return (nb_strs);
-}
-
-void	ft_get_str(char **str, unsigned int *str_len, char c)
-{
-	unsigned int	i;
-
-	*str += *str_len;
-	*str_len = 0;
-	i = 0;
-	while (**str && **str == c)
-		(*str)++;
-	while ((*str)[i])
-	{
-		if ((*str)[i] == c)
-			return ;
-		(*str_len)++;
-		i++;
-	}
-}
-
-static char	**ft_error(char **res)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (res[i])
-	{
-		free(res[i]);
-		i++;
-	}
-	free(res);
-	res = NULL;
-	return (NULL);
+	ret = ft_substr(s, pos, (i - pos));
+	return (ret);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char			**res;
-	char			*str;
-	unsigned int	str_len;
-	unsigned int	nb_strs;
 	unsigned int	i;
+	unsigned int	pos;
 
-	if (!s)
-		return (NULL);
-	nb_strs = ft_nb_words(s, c);
-	res = (char **)malloc(sizeof(char *) * (nb_strs + 1));
-	if (!res)
-		return (NULL);
 	i = 0;
-	str = (char *)s;
-	str_len = 0;
-	while (i < nb_strs)
+	pos = 0;
+	res = (char **)malloc(sizeof(char *) * (ft_numbers_str(s, c) + 1));
+	if (NULL == res)
+		return (NULL);
+	while (s[pos] && i < ft_numbers_str(s, c))
 	{
-		ft_get_str(&str, &str_len, c);
-		res[i] = (char *)malloc(sizeof(char) * (str_len + 1));
-		if (!res[i])
-			return (ft_error(res));
-		ft_strlcpy(res[i++], str, str_len + 1);
+		if (s[pos] != c)
+		{
+			res[i] = ft_sub(s, c, pos);
+			pos = pos + ft_strlen(res[i]);
+			if (NULL == res[i])
+				ft_free(res, i);
+			i++;
+		}
+		pos++;
 	}
 	res[i] = NULL;
 	return (res);

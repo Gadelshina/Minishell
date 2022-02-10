@@ -1,41 +1,54 @@
-NAME = minishell
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/02/07 14:11:37 by glukon            #+#    #+#              #
+#    Updated: 2022/02/10 11:51:31 by aazrael          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-OBJ_DIR = object/
-SRC_DIR = source/
+NAME =		minishell
 
-SRCS = source/main.c 
+SRCS =		src/main/main.c	src/main/sig.c src/main/env.c src/helps_f/err.c\
+			src/helps_f/free_f.c src/main/init_shell.c src/parser/parsers.c\
+			scr/parser/parser_help.c 
 
-CC = gcc
-FLAGS = -Wall -Wextra -Werror
-HEAD_DIR = includes
-HEAD = includes/minishell.h
-OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
+OBJS =		$(SRCS:.c=.o)
 
-LIBFT		= libft/libft.a
-LIBFT_DIR	= libft/
+CC =		gcc
 
-all : sub_directory libft $(NAME)
+CFLAGS =	-Wall -Wextra -Werror
 
-sub_directory :
-		@mkdir -p $(OBJ_DIR)
+HEADER =	includes/minishell.h
 
-$(OBJ_DIR)%.o : $(SRC_DIR)%.c $(HEAD) $(LIBFT)
-		$(CC) $(FLAGS) -I $(HEAD_DIR) -I $(LIBFT_DIR) -c $< -o $@
+LIBFT =		libft/libft.a
 
-libft:
-		make -C $(LIBFT_DIR)
+RM =		rm -f
 
-$(NAME) : $(OBJS)
-		$(CC) -o $@ $(FLAGS) $^ -lreadline -L$(LIBFT_DIR) -lft
-		@echo "\n ./$(NAME) has been compiled"
+RDL_FLAGS =	
 
-clean :
-		@rm -rf $(OBJ_DIR)
-		make clean -C $(LIBFT_DIR)
-fclean : clean
-		@rm -rf $(NAME)
-		make fclean -C $(LIBFT_DIR)
-		@echo "fclean complete"
-re : fclean all
+all:		subsystem $(NAME)
 
-.PHONY : all fclean clean re
+%.o:		%.c $(HEADER) $(LIBFT)
+			$(CC) $(CFLAGS) -I includes -I libft -c $< -o $@
+
+subsystem:
+			make -C libft
+
+$(NAME):	$(OBJS)
+			$(CC) $(CFLAGS) $^ -lreadline  -L libft -lft -o $(NAME)
+
+clean:
+			$(RM) $(OBJS)
+			make clean -C libft
+
+fclean:		clean
+			$(RM) $(NAME)
+			make fclean -C libft
+
+re:			fclean all
+
+.PHONY:		all clean fclean re

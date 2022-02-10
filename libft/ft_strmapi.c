@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 19:53:07 by zarachne          #+#    #+#             */
-/*   Updated: 2021/11/27 19:53:08 by zarachne         ###   ########.fr       */
+/*   Created: 2022/02/08 16:13:28 by aazrael           #+#    #+#             */
+/*   Updated: 2022/02/08 20:38:13 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			*res;
 	unsigned int	i;
+	char			*res;
 
 	i = 0;
-	if (!s || !f)
-		return (0);
-	res = malloc(sizeof(*res) * (ft_strlen(s) + 1));
-	if (!res)
-		return (0);
-	while (s[i])
+	if (s == NULL || (s == NULL && f == NULL))
+		return (ft_strdup(""));
+	else if (f == NULL)
+		return (ft_strdup(s));
+	res = ft_strdup(s);
+	if (NULL == res)
+		return (NULL);
+	while (s[i] != '\0')
 	{
-		res[i] = f(i, s[i]);
+		res[i] = (*f)(i, s[i]);
 		i++;
 	}
-	res[i] = '\0';
 	return (res);
 }
