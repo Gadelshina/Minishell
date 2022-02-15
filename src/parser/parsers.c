@@ -6,7 +6,7 @@
 /*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:31:28 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/10 11:55:50 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/15 09:39:24 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*parser0(t_token **token, char *str)
 	}
 	arr = (char **)malloc((sep_ct + 1) * sizeof(*arr));
 	if (NULL == arr)
-		malloc_error();
+		malloc_err();
 	str = parser1(str, arr, sep_ct + 1);
 	create_tokens(token, arr, sep_ct + 1);
 	free(arr);

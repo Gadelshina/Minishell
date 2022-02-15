@@ -6,7 +6,7 @@
 /*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:19:00 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/10 10:34:05 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/15 10:09:15 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,32 @@ static void	update_history(char *in)
 			return ;
 		}
 		i++;
+	}
+}
+
+static void	post_init_tokens(t_token *token)
+{
+	t_token	*tmp;
+
+	tmp = token;
+	while (tmp)
+	{
+		tmp->skip = FALSE;
+		if (tmp->type == CMD && ft_strcmp(tmp->str, "") == 0)
+			tmp->skip = TRUE;
+		tmp = tmp->next;
+	}
+}
+
+void print_tokens(t_token *token)
+{
+	t_token	*tmp;
+
+	tmp = token;
+	while (tmp)
+	{
+		printf("type=	%d str=	%s\n", tmp->type, tmp->str);
+		tmp = tmp->next;
 	}
 }
 
@@ -50,9 +76,10 @@ static int	main_cycle(t_main *shell, char **in, t_token **tokens, \
 		free(shell->message);
 		return (2);
 	}
-	//post_init_tokens(*tokens);
+	post_init_tokens(*tokens);
 	shell->tokens = *tokens;
 	//execution(shell);
+	print_tokens(*tokens);
 	free_tokens(tokens);
 	return (0);
 }

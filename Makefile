@@ -6,7 +6,7 @@
 #    By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/07 14:11:37 by glukon            #+#    #+#              #
-#    Updated: 2022/02/10 11:51:31 by aazrael          ###   ########.fr        #
+#    Updated: 2022/02/15 09:47:59 by aazrael          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME =		minishell
 
 SRCS =		src/main/main.c	src/main/sig.c src/main/env.c src/helps_f/err.c\
 			src/helps_f/free_f.c src/main/init_shell.c src/parser/parsers.c\
-			scr/parser/parser_help.c 
+			src/parser/parser_help.c src/parser/parser_help2.c src/parser/parser_help3.c\
+			src/parser/parser_help4.c src/parser/tokens.c 
 
 OBJS =		$(SRCS:.c=.o)
 
