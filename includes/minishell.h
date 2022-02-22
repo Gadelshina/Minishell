@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 22:17:20 by mlatashi          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/02/15 14:41:00 by aazrael          ###   ########.fr       */
+=======
+/*   Updated: 2022/02/22 19:18:16 by zarachne         ###   ########.fr       */
+>>>>>>> f3928be60c8e60c64b13df370444bd41755ebc06
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,35 +107,31 @@ typedef struct s_parser
 }				t_parser;
 
 void		ft_sig(int code);
-void		ft_signal_doc(int code);
+void		ft_signal_heredoc(int code);
 void		on_eof(t_main *shell);
 void		init0_shell(t_main *shell, char ***arr);
 void		init1_shell(t_main *shell);
 void		shell_err(t_main *shell);
 void		free_data(t_token *a_tokens, t_token *b_tokens);
-void		execution(t_main *shell);
+void		executing(t_main *shell);
 
 void	simple_cmd(char **argv);
 int		imple_cmd(char **argv);
 void	free_char_list(char **list);
 void	execute_last_cmd(t_token *token);
-int		return_shell_err(t_main *shell);
+int		return_err(t_main *shell);
 
 void	exit_shell_err(t_main *shell);
-int		fatal_error(t_main *shell);
+int		fatal_err(t_main *shell);
 void	malloc_err(void);
-int		set_redirection(t_main *shell);
+int		set_redirect(t_main *shell);
 
-int		execute_builtin(t_main *shell, t_token *token);
-t_token	*get_prev_input(t_token *token);
+int		execute_builtins(t_main *shell, t_token *token);
+void	prepare_input(t_main *shell, t_token *token);
 
 void	exec_here_doc(t_main *shell, t_token *token);
 int		redirect_heredoc(t_main *shell, t_token *token, int *new_input);
 int		get_next_line(int fd, char **line);
-size_t	gnl_strlen(const char *s);
-char	*gnl_strchr(const char *s, int c);
-char	*gnl_strjoin(char *s1, char const *s2);
-size_t	gnl_strlcpy(char *dst, const char *src, size_t dstsize);
 
 void	execute_token(t_main *shell, t_token *token);
 void	execv_cmd(t_token *token);
@@ -141,22 +141,21 @@ void	free_tokens(t_token **token);
 void	split_free(char **paths);
 void	execute_pipe(t_main *shell, t_token *token, int *curr_pipe);
 
-int		redirect_out(t_main *shell, t_token *token, int *new_output);
+int		redirect_output(t_main *shell, t_token *token, int *new_output);
 
 int		first_pipe(t_main *shell, t_token *token, int fd);
 int		mid_pipe(t_main *shell, t_token *token, int fd);
 int		last_pipe(t_main *shell, t_token *token, int fd);
 int		the_only_pipe(t_main *shell, t_token *token, int fd);
 
-void	struct_pid_clear(t_pid_t **head);
+void    clear_child_struct(t_pid_t **first);
 void	struct_pid_add(t_pid_t **head, t_pid_t *new);
 t_pid_t	*struct_pid_new(pid_t value);
 int		ctrl_d(t_main *shell, char *input);
-void	close_fd_save(int fd);
-void	handle_return_value(int *return_value);
+void    check_status(int *status);
 void	set_io_first(t_main *shell, t_token *token, int fd);
 void	set_io_last(t_main *shell, t_token *token, int fd);
-int		pipes_count(t_main *shell);
+int		count_pipes(t_main *shell);
 int		token_has_redir_out(t_main *shell, t_token *token);
 int		token_has_redir_in(t_main *shell, t_token *token);
 void	execute_child_first(t_main *shell, t_token *token, int fd);
@@ -192,12 +191,9 @@ void	assign_type(t_token *token, char *str);
 int		is_builtin(char *str);
 
 //builtins
-int		ft_echo(t_token *token);
 int		ft_env(void);
 int		ft_pwd(void);
 int		ft_exit(t_token *token, t_main *shell);
-int		ft_export(t_token *token);
-int		ft_unset(t_token *token);
 int		ft_cd(t_token *token);
 
 //builtins_utils
@@ -213,13 +209,10 @@ int		ft_is_in_env(char *var_name);
 int		print_cd_error(char *str, int type);
 int		change_dir_to_home_or_oldpwd(char *var);
 void	update_pwd(char *pwd);
-void	update_oldpwd(char *oldpwd);
 
 //environ
-char	**m_environ(void);
-//int		env_size(char **arr);
-char	**r_environ(int diff, char *str);
-void	handle_negative_diff(char **arr, char *str, int size);
+char	**malloc_env(void);
+char	**realloc_env(int diff, char *str);
 void	free_env(void);
 void	save_exit_child(void);
 
@@ -227,5 +220,8 @@ void	save_exit_child(void);
 int		ft_strcmp(const char *s1, const char *s2);
 void	free_on_exit(char **input);
 char	*return_path(char **paths, char **ret_char);
+void	ft_close_fd(int fd);
+
+
 
 #endif

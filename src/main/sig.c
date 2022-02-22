@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 21:39:17 by svirgil           #+#    #+#             */
-/*   Updated: 2022/02/09 16:36:41 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/22 14:53:58 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_sig(int code)
 {
 	if (code == SIGINT && !g_main.g_run)
 	{
-		g_main.g_return = 130;
+		g_main.g_return = SIGINT_STATUS;
 		ft_putstr_fd("^C\n", 1);
 		rl_on_new_line();
 		rl_replace_line("", 1);
@@ -57,7 +57,7 @@ int	ctrl_d(t_main *shell, char *in)
 	return (FALSE);
 }
 
-void	ft_signal_doc(int code)
+void	ft_signal_heredoc(int code)
 {
 	if (code == SIGINT)
 	{

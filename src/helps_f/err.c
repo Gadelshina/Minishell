@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   err.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:04:30 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/09 16:31:04 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/22 15:31:40 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,21 @@ void	shell_err(t_main *shell)
 	g_main.g_return = 1;
 	perror("minishell: an error has occured");
 	return ;
+}
+
+int	return_err(t_main *shell)
+{
+	shell->error = TRUE;
+	g_main.g_return = 1;
+	perror("minishell");
+	return (1);
+}
+
+int	fatal_err(t_main *shell)
+{
+	if (shell-> error)
+		return (1);
+	if (g_main.g_run == FALSE)
+		return (1);
+	return (0);
 }

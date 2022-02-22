@@ -6,7 +6,7 @@
 /*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:19:00 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/15 15:02:15 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/22 15:39:54 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,17 @@ static void	post_init_tokens(t_token *token)
 	}
 }
 
-void print_tokens(t_token *token)
-{
-	t_token	*tmp;
+// void print_tokens(t_token *token)
+// {
+// 	t_token	*tmp;
 
-	tmp = token;
-	while (tmp)
-	{
-		printf("type=	%d str=	%s\n", tmp->type, tmp->str);
-		tmp = tmp->next;
-	}
-}
+// 	tmp = token;
+// 	while (tmp)
+// 	{
+// 		printf("type=	%d str=	%s\n", tmp->type, tmp->str);
+// 		tmp = tmp->next;
+// 	}
+// }
 
 static int	main_cycle(t_main *shell, char **in, t_token **tokens, \
 			int first_call)
@@ -71,15 +71,14 @@ static int	main_cycle(t_main *shell, char **in, t_token **tokens, \
 	}
 	update_history(*in);
 	*in = parser0(tokens, *in);
-	if (NULL == *in)
+	if (*in == NULL)
 	{
 		free(shell->message);
 		return (2);
 	}
 	post_init_tokens(*tokens);
 	shell->tokens = *tokens;
-	//execution(shell);
-	print_tokens(*tokens);
+	executing(shell);
 	free_tokens(tokens);
 	return (0);
 }
