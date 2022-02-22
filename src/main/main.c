@@ -6,7 +6,7 @@
 /*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:19:00 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/15 10:09:15 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/15 15:02:15 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static int	main_cycle(t_main *shell, char **in, t_token **tokens, \
 	}
 	update_history(*in);
 	*in = parser0(tokens, *in);
-	if (*in == NULL)
+	if (NULL == *in)
 	{
 		free(shell->message);
 		return (2);
