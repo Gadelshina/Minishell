@@ -6,13 +6,13 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 08:48:57 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/21 11:31:39 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/22 20:34:20 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	env_size(char **arr)
+int	env_size(char **arr)
 {
 	int	i;
 

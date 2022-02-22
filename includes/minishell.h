@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 22:17:20 by mlatashi          #+#    #+#             */
-/*   Updated: 2022/02/22 19:18:16 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/22 22:47:49 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,23 +191,23 @@ int		ft_env(void);
 int		ft_pwd(void);
 int		ft_exit(t_token *token, t_main *shell);
 int		ft_cd(t_token *token);
+int		ft_export(t_token *token);
+int		ft_echo(t_token *token);
+int		ft_unset(t_token *token);
 
 //builtins_utils
 int		is_arg_numeric(char *str);
-void	insertion_sort(char **arr, int size);
-void	print_sorted_env(void);
-int		check_var_name(char *str);
-int		print_export_or_unset_error(char *str, int type);
-char	*get_var_name(char *str);
-void	add_var(char *var_name, char *str);
+void	sort_env(char **arr, int size);
+int		export_error(char *str, int type);
 int		is_name_valid(char *str);
-int		ft_is_in_env(char *var_name);
+int		is_in_env(char *name);
 int		print_cd_error(char *str, int type);
 int		change_dir_to_home_or_oldpwd(char *var);
 void	update_pwd(char *pwd);
 
 //environ
 char	**malloc_env(void);
+int		env_size(char **arr);
 char	**realloc_env(int diff, char *str);
 void	free_env(void);
 void	save_exit_child(void);

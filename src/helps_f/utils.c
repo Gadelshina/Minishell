@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 12:57:42 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/22 18:33:47 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/22 20:53:00 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,25 @@ void    check_status(int *status)
 			ret = SIGQUIT_STATUS;
 	}
 	(*status) = ret;
+}
+
+void	sort_env(char **arr, int size)
+{
+	int		i;
+	int		j;
+	char	*tmp;
+
+	i = 1;
+	while (i < size)
+	{
+		j = i;
+		while (j > 0 && ft_strcmp(arr[j], arr[j - 1]) < 0)
+		{
+			tmp = arr[j];
+			arr[j] = arr[j - 1];
+			arr[j - 1] = tmp;
+			j--;
+		}
+		i++;
+	}
 }
