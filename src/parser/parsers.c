@@ -6,7 +6,7 @@
 /*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:31:28 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/15 09:39:24 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/15 15:54:15 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*parser1(char *str, char **array, int token_ct)
 	}
 	if (str[var.last_space] != '\0')
 		array[var.j] = ft_substr(str, var.last_space, var.i - var.last_space);
-	else if (str[var.last_space] == '\0' && var.j < token_ct)
+	else if (str[var.last_space] == '\0' && var.j < token_ct) //протестировать
 		array[var.j] = ft_substr(str, var.last_space, var.i - var.last_space);
 	return (str);
 }
