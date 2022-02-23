@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:26:46 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/22 19:09:07 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/23 16:13:20 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,13 @@ static void	rewrite_oldpwd(char *oldpwd)
 			i++;
 		}
 	}
-	else
 	tmp = ft_strjoin("OLDPWD", oldpwd);
 	__environ = realloc_env(1, tmp);
 	free(oldpwd);
 	free(tmp);
 }
 
-int	change_dir(char *str)
+static int	change_dir(char *str)
 {
 	int		ret;
 	char	*oldpwd;

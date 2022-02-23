@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 08:48:57 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/22 20:34:20 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/23 16:27:14 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,31 +39,30 @@ char	**malloc_env(void)
 	return (arr);
 }
 
-static void	handle_neg_add(char **arr, char *str, int size)
+static void	delete_var(char **arr, char *str, int size)
 {
 	int	i;
 	int	j;
 	int	len;
 
 	len = ft_strlen(str);
-	i = -1;
+	i = 0;
 	j = 0;
-	while (++i < size)
+	while (i < size)
 	{
 		if (!ft_strncmp(str, __environ[i], len) && 
 			(__environ[i][len] == '=' || __environ[i][len] == '\0'))
 		{
 			free(__environ[i]);
+			i++;
 			continue ;
 		}
 		arr[j] = ft_strdup(__environ[i]);
 		free(__environ[i]);
 		j++;
+		i++;
 	}
-	
 }
-
-// В каких случаях add негативный?
 
 char	**realloc_env(int add, char *str)
 {
@@ -77,16 +76,17 @@ char	**realloc_env(int add, char *str)
 		malloc_err();
 	if (add > 0)
 	{
-		i = -1;
-		while (++i < size)
+		i = 0;
+		while (i < size)
 		{
 			arr[i] = ft_strdup(__environ[i]);
 			free(__environ[i]);
+			i++;
 		}
 		arr[i] = ft_strdup(str);
 	}
 	else
-		handle_neg_add(arr, str, size);
+		delete_var(arr, str, size);
 	arr[size + add] = NULL;
 	free(__environ);
 	return (arr);

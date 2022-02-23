@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 20:22:14 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/22 23:10:30 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/23 16:28:59 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,13 @@ int ft_unset(t_token *token)
     int ret;
 
     ret = 0;
+	while (token && token->type == ARG)
+	{
+		if (check_var(token->str) && is_in_env != -1)
+			__environ = realloc_env(-1, token->str);
+		else if (!check_var)
+			ret = export_error(token->str, 0);
+		token = token->next;
+	}
     return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 20:21:50 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/22 23:02:10 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/23 15:58:47 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void print_export(void)
 	free(arr);
 }
 
-static int		check_var(char *str)
+int		check_var(char *str)
 {
 	int	i;
 
@@ -87,7 +87,7 @@ int ft_export(t_token *token)
 	{
 		while (token && token->type == ARG)
 		{
-			if (check_var(token->str) == 1)
+			if (!check_var(token->str))
 				ret = export_error(token->str, 1);
 			else
 				create_var(name_var(token->str), token->str);

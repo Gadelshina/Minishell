@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/07 22:17:20 by mlatashi          #+#    #+#             */
-/*   Updated: 2022/02/22 22:47:49 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/23 16:01:12 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,14 +196,10 @@ int		ft_echo(t_token *token);
 int		ft_unset(t_token *token);
 
 //builtins_utils
-int		is_arg_numeric(char *str);
 void	sort_env(char **arr, int size);
 int		export_error(char *str, int type);
-int		is_name_valid(char *str);
 int		is_in_env(char *name);
-int		print_cd_error(char *str, int type);
-int		change_dir_to_home_or_oldpwd(char *var);
-void	update_pwd(char *pwd);
+int		check_var(char *str);
 
 //environ
 char	**malloc_env(void);
