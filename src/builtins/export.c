@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 20:21:50 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/23 15:58:47 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/23 18:57:47 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ static void	create_var(char *name, char *str)
 
 	i = is_in_env(name);
 	free(name);
-	if (i >= 0 && ft_strchr(str, "="))
+	if (i >= 0 && ft_strchr(str, '='))
 	{
 		free(__environ[i]);
 		__environ[i] = ft_strdup(str);
 	}
-	else if (i >= 0 && !ft_strchr(str, "="))
+	else if (i >= 0 && !ft_strchr(str, '='))
 		return ;
 	else
 		__environ = realloc_env(1, str);
