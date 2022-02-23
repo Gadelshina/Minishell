@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 20:21:50 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/23 18:57:47 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/23 19:42:50 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@ int		check_var(char *str)
 
 	i = 0;
 	if (!ft_isalpha(str[i]) && str[i] != '_')
-		return (1);
+		return (0);
 	while (str[i] && str[i] != '=')
 	{
 		if (!ft_isalnum(str[i]) && str[i] != '_')
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 static char	*name_var(char *str)
