@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:25:56 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 13:50:46 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 17:15:01 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,11 @@ void	set_fd_last(t_main *shell, t_token *token, int fd);
 int		count_pipes(t_main *shell);
 int		token_has_redir_out(t_main *shell, t_token *token);
 int		token_has_redir_in(t_main *shell, t_token *token);
+
 void	execute_child_first(t_main *shell, t_token *token, int fd);
 void	execute_child_right(t_main *shell, t_token *token, int fd);
+void	execute_child_left(t_main *shell, t_token *token, int fd);
+
 
 //parser
 char	*parser0(t_token **token, char *str);
