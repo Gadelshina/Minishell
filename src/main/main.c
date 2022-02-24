@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:19:00 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/22 15:39:54 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/23 19:46:30 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,6 @@ static void	post_init_tokens(t_token *token)
 		tmp = tmp->next;
 	}
 }
-
-// void print_tokens(t_token *token)
-// {
-// 	t_token	*tmp;
-
-// 	tmp = token;
-// 	while (tmp)
-// 	{
-// 		printf("type=	%d str=	%s\n", tmp->type, tmp->str);
-// 		tmp = tmp->next;
-// 	}
-// }
 
 static int	main_cycle(t_main *shell, char **in, t_token **tokens, \
 			int first_call)

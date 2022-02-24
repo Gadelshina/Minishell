@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   free_f.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:15:07 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/09 16:35:38 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/24 12:21:44 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	free_arr(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+}
 
 void	free_env(void)
 {
@@ -47,4 +57,10 @@ void	free_tokens(t_token **token)
 	(*token)->str = NULL;
 	free(*token);
 	*token = NULL;
+}
+
+char	*return_path(char **paths, char **ret_char)
+{
+	free_arr(paths);
+	return (*ret_char);
 }

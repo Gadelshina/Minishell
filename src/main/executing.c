@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 12:35:13 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/22 18:33:17 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/23 19:52:07 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_token	*search_next_token(t_token *token)
 	return (ret);
 }
 
-static void loop(t_main *shell, int count)
+static void loop(t_main *shell, int *pipe)
 {
 	t_token *token;
 
@@ -69,7 +69,7 @@ static void loop(t_main *shell, int count)
 			continue ;
 		}
 		if (token->type == PIPE)
-			count++;
+			execute_pipe(shell,token, pipe);
 		
 		if (token->type <= BUILTIN && !are_there_pipes(shell))
 			execute_token(shell, token);
@@ -99,7 +99,7 @@ void	executing(t_main *shell)
 
 	g_main.g_run = TRUE;
 	current_pipe = 0;
-	loop(shell, current_pipe);
+	loop(shell, &current_pipe);
 	wait_child(shell);
 	g_main.g_run = FALSE;
 	unlink("here_doc");

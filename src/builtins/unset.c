@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 20:22:14 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/23 19:00:56 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/23 19:39:54 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int    export_error(char *str, int export)
     else
         ft_putstr_fd("minishell: unset: «", 2);
     ft_putstr_fd(str, 2);
-    ft_putstr_fd("»: not a valid identifier", 2);
+    ft_putstr_fd("»: not a valid identifier\n", 2);
     return (1);
 }
 

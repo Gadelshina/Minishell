@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:25:56 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/23 17:26:02 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 12:55:26 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,28 +125,28 @@ int		set_redirect(t_main *shell);
 int		execute_builtins(t_main *shell, t_token *token);
 void	prepare_input(t_main *shell, t_token *token);
 
-void	exec_here_doc(t_main *shell, t_token *token);
+void	execute_heredoc(t_main *shell, t_token *token);
 int		redirect_heredoc(t_main *shell, t_token *token, int *new_input);
 int		get_next_line(int fd, char **line);
 
 void	execute_token(t_main *shell, t_token *token);
-void	execv_cmd(t_token *token);
+void	execve_cmd(t_token *token);
 t_token	*get_prev_token(t_token *token);
 
 void	free_tokens(t_token **token);
-void	split_free(char **paths);
-void	execute_pipe(t_main *shell, t_token *token, int *curr_pipe);
+void	free_arr(char **paths);
+void	execute_pipe(t_main *shell, t_token *token, int *pipe);
 
 int		redirect_output(t_main *shell, t_token *token, int *new_output);
 
 int		first_pipe(t_main *shell, t_token *token, int fd);
 int		mid_pipe(t_main *shell, t_token *token, int fd);
 int		last_pipe(t_main *shell, t_token *token, int fd);
-int		the_only_pipe(t_main *shell, t_token *token, int fd);
+int		lonely_pipe(t_main *shell, t_token *token, int fd);
 
-void    clear_child_struct(t_pid_t **first);
-void	struct_pid_add(t_pid_t **head, t_pid_t *new);
-t_pid_t	*struct_pid_new(pid_t value);
+void    clear_pid_struct(t_pid_t **first);
+void	add_pid_struct(t_pid_t **first, t_pid_t *new);
+t_pid_t	*new_pid_struct(pid_t pid);
 int		ctrl_d(t_main *shell, char *input);
 void    check_status(int *status);
 void	set_io_first(t_main *shell, t_token *token, int fd);
@@ -206,14 +206,12 @@ char	**malloc_env(void);
 int		env_size(char **arr);
 char	**realloc_env(int diff, char *str);
 void	free_env(void);
-void	save_exit_child(void);
+void	exit_child(void);
 
 //utils
 int		ft_strcmp(const char *s1, const char *s2);
 void	free_on_exit(char **input);
 char	*return_path(char **paths, char **ret_char);
 void	ft_close_fd(int fd);
-
-
 
 #endif

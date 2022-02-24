@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 22:56:27 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/22 18:46:37 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 10:10:09 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	create_file(t_token *token)
 	
 }
 
-static void execute_heredoc(t_main *shell, t_token *token)
+void execute_heredoc(t_main *shell, t_token *token)
 {
 	pid_t pid;
 
