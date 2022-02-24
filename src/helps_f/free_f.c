@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:15:07 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/24 12:21:44 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 14:04:33 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,19 @@ char	*return_path(char **paths, char **ret_char)
 {
 	free_arr(paths);
 	return (*ret_char);
+}
+
+void	free_char_list(char **list)
+{
+	int	i;
+
+	i = 0;
+	while (list[i])
+	{
+		free(list[i]);
+		list[i] = NULL;
+		i++;
+	}
+	free(list);
+	list = NULL;
 }

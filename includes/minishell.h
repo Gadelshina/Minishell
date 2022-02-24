@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:25:56 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 13:34:02 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:50:46 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ void		executing(t_main *shell);
 void	simple_cmd(char **argv);
 int		imple_cmd(char **argv);
 void	free_char_list(char **list);
-void	execute_last_cmd(t_token *token);
 int		return_err(t_main *shell);
 
 void	exit_shell_err(t_main *shell);

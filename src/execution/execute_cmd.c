@@ -6,17 +6,11 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:48:55 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 10:43:53 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 14:07:53 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	execute_token(t_main *shell, t_token *token)
-{
-	if (token->type == BUILTIN)
-		execute_builtins(shell, token);
-}
 
 static int	get_size(t_token *token)
 {
@@ -56,10 +50,37 @@ static char	**get_argv(t_token *token)
 	return (argv);
 }
 
+static void	execute_last_cmd(t_main *shell, t_token *token)
+{
+	pid_t	parent;
+	char	**argv;
+
+	argv = get_argv(token);
+	parent = fork();
+	if (parent == -1)
+		shell_err(shell);
+	else if (parent)
+	{
+		waitpid(parent, &g_main.g_return, 0);
+		check_status(&g_main.g_return);
+		free_char_list(argv);
+	}
+	else
+		simple_cmd(argv);
+}
+
 void	execve_cmd(t_token *token)
 {
 	char	**argv;
 	
 	argv = get_argv(token);
 	simple_cmd(argv);
+}
+
+void	execute_token(t_main *shell, t_token *token)
+{
+	if (token->type == BUILTIN)
+		execute_builtins(shell, token);
+	else if (token->type == ARG || token->type == CMD)
+		execute_last_cmd(shell, token);
 }
