@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 17:29:50 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/23 21:15:13 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:30:30 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    clear_pid_struct(t_pid_t **first)
 	{
 		next_child = child->next;
 		free(child);
-		child = child->next;
+		child = next_child;
 	}
 	*first = NULL;
 }
@@ -61,7 +61,7 @@ void	add_pid_struct(t_pid_t **first, t_pid_t *new)
 		*first = new;
 		return ;
 	}
-	last = searc_last(*first);
+	last = search_last(*first);
 	last->next = new;
 	
 }

@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 12:35:13 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/23 19:52:07 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:26:03 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void wait_child(t_main *shell)
 		check_status(&g_main.g_return);
 		tmp = tmp->next;
 	}
-	clear_child_struct(&shell->childs);
+	clear_pid_struct(&shell->childs);
 }
 
 void	executing(t_main *shell)

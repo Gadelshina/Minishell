@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:44:35 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 12:34:20 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:39:44 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static char *get_path(char **cmd, char **env)
 		free(path);
 	}
 	free_arr(paths);
-	if (!acess(cmd[0], 1))
+	if (!access(cmd[0], 1))
 		return (cmd[0]);
 	print_cmd_err(cmd);
 	exit (ERROR_STATUS);

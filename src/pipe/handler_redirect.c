@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 08:36:19 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 10:11:11 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:39:05 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ static void	handle_new_out(t_main *shell, t_token *token)
 			shell->fd_out = open(file, O_CREAT | O_WRONLY | O_TRUNC, S_IRWXU);
 		if (token->type == REDIR_OUT_2)
 			shell->fd_out = open(file, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU);
-		if (shell_err)
-			return (shell_err);
+		if (shell->error)
+			return (shell_err(shell));
 		else if (dup2(shell->fd_out, 1) == -1)
-			return (shell_err);
+			return (shell_err(shell));
 	}
 }
 
@@ -58,9 +58,9 @@ int token_has_redir_in(t_main *shell, t_token *token)
 
 	ret = 0;
 	desire = token;
-	while (desire->prev && desire->prev != PIPE)
+	while (desire->prev && desire->prev->type != PIPE)
 		desire = desire->prev;
-	while (desire && desire->next != PIPE)
+	while (desire && desire->type != PIPE)
 	{
 		if (desire->type == REDIR_IN)
 		{
@@ -86,7 +86,7 @@ int token_has_redir_out(t_main *shell, t_token *token)
 
 	ret = 0;
 	desire = token;
-	while (desire->prev && desire->type != PIPE)
+	while (desire->prev && desire->prev->type != PIPE)
 		desire = desire->prev;
 	while (desire && desire->type != PIPE)
 	{

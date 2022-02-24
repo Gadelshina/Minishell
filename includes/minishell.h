@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:25:56 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 12:55:26 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 13:34:02 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,8 +149,8 @@ void	add_pid_struct(t_pid_t **first, t_pid_t *new);
 t_pid_t	*new_pid_struct(pid_t pid);
 int		ctrl_d(t_main *shell, char *input);
 void    check_status(int *status);
-void	set_io_first(t_main *shell, t_token *token, int fd);
-void	set_io_last(t_main *shell, t_token *token, int fd);
+void	set_fd_first(t_main *shell, t_token *token, int fd);
+void	set_fd_last(t_main *shell, t_token *token, int fd);
 int		count_pipes(t_main *shell);
 int		token_has_redir_out(t_main *shell, t_token *token);
 int		token_has_redir_in(t_main *shell, t_token *token);
