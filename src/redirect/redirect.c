@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:03:54 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/25 09:39:29 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 13:06:49 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,23 @@ static int	open_error(void)
 	return (-1);
 }
 
-void	prepare_input(t_main *shell, t_token *token)
+t_token	*prepare_input(t_token *token)
 {
 	t_token	*desire;
 
 	desire = token->prev;
 	while (desire && desire->type != REDIR_IN && desire->type != REDIR_HEREDOC)
 		desire = desire->prev;
-	desire->skip = TRUE;
-	ft_close_fd(shell->fd_in);
+	return (desire);
 }
 
 static int	redirect_input(t_main *shell, t_token *token, int *new_input)
 {
 	if ((*new_input) == 1)
-		prepare_input(shell, token);
+	{
+		prepare_input(token)->skip = TRUE;
+		ft_close_fd(shell->fd_in);
+	}
 	if (token->next)
 	{
 		shell->fd_in = open(token->next->str, O_RDONLY, S_IRWXU);
@@ -63,8 +65,8 @@ int	set_redirect(t_main *shell)
 	t_token	*token;
 
 	token = shell->tokens;
-	input = 0;
-	output = 0;
+	input = FALSE;
+	output = FALSE;
 	while (token)
 	{
 		if (is_error(shell))

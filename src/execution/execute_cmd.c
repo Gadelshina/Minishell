@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:48:55 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 19:03:35 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 12:20:44 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,14 @@ static char	**get_argv(t_token *token)
 	return (argv);
 }
 
-static void	execute_last_cmd(t_main *shell, t_token *token)
+static void	execute_last_cmd(t_token *token)
 {
 	pid_t	parent;
 	char	**argv;
 
 	argv = get_argv(token);
 	parent = fork();
-	if (parent == -1)
-		shell_err(shell);
-	else if (parent)
+	if (parent)
 	{
 		waitpid(parent, &g_main.g_return, 0);
 		check_status(&g_main.g_return);
@@ -82,5 +80,5 @@ void	execute_token(t_main *shell, t_token *token)
 	if (token->type == BUILTIN)
 		execute_builtins(shell, token);
 	else if (token->type == ARG || token->type == CMD)
-		execute_last_cmd(shell, token);
+		execute_last_cmd(token);
 }

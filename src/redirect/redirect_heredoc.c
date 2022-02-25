@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 22:56:27 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/25 09:37:34 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 13:47:07 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,11 @@ static int	create_file(t_token *token)
 	int		len;
 	char	*str;
 
+
 	fd = open("here_doc", O_RDWR | O_CREAT | O_TRUNC, 0664);
 	if (fd < 0 || read(fd, 0, 0) < 0)
 		heredoc_err();
-	write(0, "< ", 2);
+	write(0, "> ", 2);
 	while (get_next_line(0, &str) && g_main.g_run)
 	{
 		len = ft_strlen(token->next->str);
@@ -50,7 +51,7 @@ static int	create_file(t_token *token)
 			break ;
 		ft_putendl_fd(str, fd);
 		free (str);
-		write(0, "< ", 2);
+		write(0, "> ", 2);
 	}
 	if (!*str)
 		ft_putstr_fd("warning: here-document delimited by end-of-file\n", 2);
@@ -64,32 +65,36 @@ static int	create_file(t_token *token)
 
 void	execute_heredoc(t_main *shell, t_token *token)
 {
-	pid_t	pid;
+	pid_t	parent;
 
-	pid = fork();
-	if (pid == -1)
+	parent = fork();
+	if (parent == -1)
 		return (shell_err(shell));
-	if (pid)
-		execute_parent(shell, pid);
-	else if (!pid)
+	if (parent)
+		execute_parent(shell, parent);
+	else if (!parent)
 	{
 		signal(SIGINT, ft_signal_heredoc);
 		signal(SIGQUIT, ft_signal_heredoc);
-		if (dup2(shell->fd_in, STDIN) == -1)
+		if (dup2(shell->in, STDIN) == -1)
 			return (shell_err(shell));
-		ft_close_fd(shell->fd_in);
+		ft_close_fd(shell->in);
 		if (!create_file(token))
 		{
 			free_env();
 			exit (0);
 		}
+
 	}
 }
 
 int	redirect_heredoc(t_main *shell, t_token *token, int *new_input)
 {
 	if ((*new_input) == 1)
-		prepare_input(shell, token);
+	{
+		prepare_input(token)->skip = TRUE;
+		ft_close_fd(shell->fd_in);
+	}
 	if (token->next)
 	{
 		g_main.g_here_doc = TRUE;

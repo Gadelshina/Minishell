@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:25:56 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/25 09:55:06 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 16:04:11 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int		fatal_err(t_main *shell);
 void	malloc_err(void);
 
 int		execute_builtins(t_main *shell, t_token *token);
-void	prepare_input(t_main *shell, t_token *token);
+t_token	*prepare_input(t_token *token);
 
 void	execute_heredoc(t_main *shell, t_token *token);
 int		get_next_line(int fd, char **line);

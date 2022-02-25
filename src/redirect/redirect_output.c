@@ -6,20 +6,25 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:44:08 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/25 09:42:15 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 12:36:36 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	prepare_output(t_main *shell, t_token *token)
+static t_token	*get_prev_redirect(t_token *token)
 {
 	t_token	*tmp;
 
 	tmp = token->prev;
 	while (tmp && tmp->type != REDIR_OUT && tmp->type != REDIR_OUT_2)
 		tmp = tmp->prev;
-	tmp->skip = TRUE;
+	return (tmp);
+}
+
+static void	prepare_output(t_main *shell, t_token *token)
+{
+	get_prev_redirect(token)->skip = TRUE;
 	ft_close_fd(shell->fd_out);
 }
 
