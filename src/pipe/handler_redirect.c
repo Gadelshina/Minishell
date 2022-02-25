@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 08:36:19 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 13:39:05 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 09:45:04 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	handle_new_heredoc(t_main *shell, t_token *token)
 		execute_heredoc(shell, token);
 }
 
-int token_has_redir_in(t_main *shell, t_token *token)
+int	token_has_redir_in(t_main *shell, t_token *token)
 {
 	t_token	*desire;
 	int		ret;
@@ -79,7 +79,7 @@ int token_has_redir_in(t_main *shell, t_token *token)
 	return (ret);
 }
 
-int token_has_redir_out(t_main *shell, t_token *token)
+int	token_has_redir_out(t_main *shell, t_token *token)
 {
 	t_token	*desire;
 	int		ret;
@@ -100,5 +100,4 @@ int token_has_redir_out(t_main *shell, t_token *token)
 	if (shell->error)
 		return (0);
 	return (ret);
-
 }

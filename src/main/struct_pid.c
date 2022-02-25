@@ -6,17 +6,17 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 17:29:50 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 13:30:30 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 19:35:03 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void    clear_pid_struct(t_pid_t **first)
+void	clear_pid_struct(t_pid_t **first)
 {
-	t_pid_t *child;
-	t_pid_t *next_child;
-	
+	t_pid_t	*child;
+	t_pid_t	*next_child;
+
 	if (!first)
 		return ;
 	child = *first;
@@ -32,7 +32,7 @@ void    clear_pid_struct(t_pid_t **first)
 t_pid_t	*new_pid_struct(pid_t pid)
 {
 	t_pid_t	*new;
-	
+
 	new = malloc(sizeof(t_pid_t));
 	if (!new)
 		return (NULL);
@@ -46,7 +46,7 @@ static t_pid_t	*search_last(t_pid_t *first)
 	if (!first)
 		return (NULL);
 	while (first->next)
-		first = first->next;	
+		first = first->next;
 	return (first);
 }
 
@@ -63,5 +63,4 @@ void	add_pid_struct(t_pid_t **first, t_pid_t *new)
 	}
 	last = search_last(*first);
 	last->next = new;
-	
 }

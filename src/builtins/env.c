@@ -6,22 +6,22 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 15:56:28 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/18 16:02:46 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 09:31:54 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_env(void)
+int	ft_env(void)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while(__environ[i])
-    {
-        if(ft_strchr(__environ[i], '='))
-            printf("%s\n",__environ[i]);
-        i++;
-    }
-    return (0);
+	i = 0;
+	while (__environ[i])
+	{
+		if (ft_strchr(__environ[i], '='))
+			printf("%s\n", __environ[i]);
+		i++;
+	}
+	return (0);
 }

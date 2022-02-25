@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:48:55 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 14:07:53 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 19:03:35 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	execute_last_cmd(t_main *shell, t_token *token)
 void	execve_cmd(t_token *token)
 {
 	char	**argv;
-	
+
 	argv = get_argv(token);
 	simple_cmd(argv);
 }

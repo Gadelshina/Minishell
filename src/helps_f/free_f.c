@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 09:15:07 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/24 14:04:33 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 19:41:29 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,6 @@ void	free_arr(char **arr)
 	while (arr[i])
 		free(arr[i++]);
 	free(arr);
-}
-
-void	free_env(void)
-{
-	int	i;
-
-	i = 0;
-	while (__environ[i] != NULL)
-	{
-		free(__environ[i]);
-		i++;
-	}
-	free(__environ);
 }
 
 void	free_on_exit(char **in)

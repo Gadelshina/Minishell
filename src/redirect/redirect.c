@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:03:54 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/22 18:54:22 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 09:39:29 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	redirect_input(t_main *shell, t_token *token, int *new_input)
 	return (0);
 }
 
-int set_redirect(t_main *shell)
+int	set_redirect(t_main *shell)
 {
 	int		input;
 	int		output;

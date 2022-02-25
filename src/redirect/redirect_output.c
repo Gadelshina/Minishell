@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:44:08 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/21 17:29:16 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 09:42:15 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static void	prepare_output(t_main *shell, t_token *token)
 {
-	t_token *desired;
+	t_token	*tmp;
 
-	desired = token->prev;
-	while(desired && desired->type != REDIR_OUT && desired->type != REDIR_OUT_2)
-		desired = desired->prev;
-	desired->skip = TRUE;
+	tmp = token->prev;
+	while (tmp && tmp->type != REDIR_OUT && tmp->type != REDIR_OUT_2)
+		tmp = tmp->prev;
+	tmp->skip = TRUE;
 	ft_close_fd(shell->fd_out);
 }
 
-int redirect_output(t_main *shell, t_token *token, int *new_output)
+int	redirect_output(t_main *shell, t_token *token, int *new_output)
 {
 	if (*new_output)
 		prepare_output(shell, token);
@@ -42,6 +42,6 @@ int redirect_output(t_main *shell, t_token *token, int *new_output)
 		(*new_output) = 1;
 	}
 	else
-		return (return_err)(shell);
+		return (return_err(shell));
 	return (0);
 }

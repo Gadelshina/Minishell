@@ -6,17 +6,17 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 20:21:50 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/23 19:42:50 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 09:36:09 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void print_export(void)
+static void	print_export(void)
 {
-	char    **arr;
-	int     size;
-	int     i;
+	char	**arr;
+	int		size;
+	int		i;
 
 	arr = malloc_env();
 	size = env_size(arr);
@@ -31,7 +31,7 @@ static void print_export(void)
 	free(arr);
 }
 
-int		check_var(char *str)
+int	check_var(char *str)
 {
 	int	i;
 
@@ -51,7 +51,7 @@ static char	*name_var(char *str)
 {
 	int		i;
 	char	*name;
- 
+
 	while (str[i] && str[i] != '=')
 		i++;
 	name = ft_substr(str, 0, i);
@@ -75,10 +75,9 @@ static void	create_var(char *name, char *str)
 		__environ = realloc_env(1, str);
 }
 
-
-int ft_export(t_token *token)
+int	ft_export(t_token *token)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	if (!token || (token && token->type != ARG))

@@ -6,23 +6,23 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 14:59:37 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/18 15:34:50 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 19:47:21 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "minishell.h"
+#include "minishell.h"
 
-int ft_pwd(void)
+int	ft_pwd(void)
 {
-    char    *str;
+	char	*str;
 
-    str = getcwd(NULL, 0);
-    if (str)
-    {
-        ft_putendl_fd(str, 1);
-        free(str);
-    }
-    else
-        return (1);
-    return (0);
+	str = getcwd(NULL, 0);
+	if (str)
+	{
+		ft_putendl_fd(str, 1);
+		free(str);
+	}
+	else
+		return (1);
+	return (0);
 }

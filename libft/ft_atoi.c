@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:15:07 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/08 16:16:05 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/24 18:19:26 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_atoi(const char *str)
 		(str[i] - '0') > 7)) && sign == 1)
 			return (-1);
 		else if ((res > 922337203685477580 || (res == 922337203685477580 && \
-		 (str[i] - '0') > 8)) && sign == -1)
+			(str[i] - '0') > 8)) && sign == -1)
 			return (0);
 		res = res * 10 + (str[i++] - '0');
 	}

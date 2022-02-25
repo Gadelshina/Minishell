@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:25:56 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 17:15:01 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 09:55:06 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct s_global
 	int	g_here_doc;
 }	t_global;
 
-t_global    g_main;
+t_global	g_main;
 
 typedef struct s_env
 {
@@ -102,52 +102,50 @@ typedef struct s_parser
 	int			last_space;
 }				t_parser;
 
-void		ft_sig(int code);
-void		ft_signal_heredoc(int code);
-void		on_eof(t_main *shell);
-void		init0_shell(t_main *shell, char ***arr);
-void		init1_shell(t_main *shell);
-void		shell_err(t_main *shell);
-void		free_data(t_token *a_tokens, t_token *b_tokens);
-void		executing(t_main *shell);
+void	ft_sig(int code);
+void	ft_signal_heredoc(int code);
+void	on_eof(t_main *shell);
+void	init0_shell(t_main *shell, char ***arr);
+void	init1_shell(t_main *shell);
+void	free_data(t_token *a_tokens, t_token *b_tokens);
+void	executing(t_main *shell);
 
-void	simple_cmd(char **argv);
-int		imple_cmd(char **argv);
 void	free_char_list(char **list);
-int		return_err(t_main *shell);
+void	free_tokens(t_token **token);
+void	free_arr(char **paths);
 
+void	shell_err(t_main *shell);
+int		return_err(t_main *shell);
 void	exit_shell_err(t_main *shell);
 int		fatal_err(t_main *shell);
 void	malloc_err(void);
-int		set_redirect(t_main *shell);
 
 int		execute_builtins(t_main *shell, t_token *token);
 void	prepare_input(t_main *shell, t_token *token);
 
 void	execute_heredoc(t_main *shell, t_token *token);
-int		redirect_heredoc(t_main *shell, t_token *token, int *new_input);
 int		get_next_line(int fd, char **line);
 
 void	execute_token(t_main *shell, t_token *token);
 void	execve_cmd(t_token *token);
+void	simple_cmd(char **argv);
 t_token	*get_prev_token(t_token *token);
-
-void	free_tokens(t_token **token);
-void	free_arr(char **paths);
 void	execute_pipe(t_main *shell, t_token *token, int *pipe);
 
+int		set_redirect(t_main *shell);
 int		redirect_output(t_main *shell, t_token *token, int *new_output);
+int		redirect_heredoc(t_main *shell, t_token *token, int *new_input);
 
 int		first_pipe(t_main *shell, t_token *token, int fd);
 int		mid_pipe(t_main *shell, t_token *token, int fd);
 int		last_pipe(t_main *shell, t_token *token, int fd);
 int		lonely_pipe(t_main *shell, t_token *token, int fd);
 
-void    clear_pid_struct(t_pid_t **first);
+void	clear_pid_struct(t_pid_t **first);
 void	add_pid_struct(t_pid_t **first, t_pid_t *new);
 t_pid_t	*new_pid_struct(pid_t pid);
 int		ctrl_d(t_main *shell, char *input);
-void    check_status(int *status);
+void	check_status(int *status);
 void	set_fd_first(t_main *shell, t_token *token, int fd);
 void	set_fd_last(t_main *shell, t_token *token, int fd);
 int		count_pipes(t_main *shell);
@@ -157,7 +155,6 @@ int		token_has_redir_in(t_main *shell, t_token *token);
 void	execute_child_first(t_main *shell, t_token *token, int fd);
 void	execute_child_right(t_main *shell, t_token *token, int fd);
 void	execute_child_left(t_main *shell, t_token *token, int fd);
-
 
 //parser
 char	*parser0(t_token **token, char *str);

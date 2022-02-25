@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 08:48:57 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/23 16:27:14 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/24 19:42:21 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	delete_var(char **arr, char *str, int size)
 	j = 0;
 	while (i < size)
 	{
-		if (!ft_strncmp(str, __environ[i], len) && 
+		if (!ft_strncmp(str, __environ[i], len) && \
 			(__environ[i][len] == '=' || __environ[i][len] == '\0'))
 		{
 			free(__environ[i]);
@@ -90,4 +90,17 @@ char	**realloc_env(int add, char *str)
 	arr[size + add] = NULL;
 	free(__environ);
 	return (arr);
+}
+
+void	free_env(void)
+{
+	int	i;
+
+	i = 0;
+	while (__environ[i] != NULL)
+	{
+		free(__environ[i]);
+		i++;
+	}
+	free(__environ);
 }
