@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 13:26:46 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/23 16:13:20 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:31:28 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int cd_error(char *str, int mode)
+static int	cd_error(char *str, int mode)
 {
 	if (mode == 1)
 		ft_putstr_fd("minishell: cd: too many arguments\n", 2);
@@ -33,7 +33,7 @@ static void	rewrite_pwd(char *pwd)
 	i = 0;
 	if (getenv("PWD"))
 	{
-		while(__environ[i])
+		while (__environ[i])
 		{
 			if (!ft_strncmp("PWD=", __environ[i], 4))
 			{
@@ -82,7 +82,7 @@ static int	change_dir(char *str)
 	char	*oldpwd;
 	char	*direct;
 
-	direct  = getenv(str);
+	direct = getenv(str);
 	if (direct)
 	{
 		oldpwd = getcwd(NULL, 0);
@@ -105,7 +105,7 @@ static int	change_dir(char *str)
 	}
 }
 
-int ft_cd(t_token *token)
+int	ft_cd(t_token *token)
 {
 	int		ret;
 	char	*oldpwd;

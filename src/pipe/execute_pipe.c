@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_pipe.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 19:53:11 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 17:54:19 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:42:19 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ static int	is_first_pipe(t_token *token)
 	}
 	return (TRUE);
 }
-
 
 static int	has_next_pipe(t_token *token)
 {
@@ -94,5 +93,4 @@ void	execute_pipe(t_main *shell, t_token *token, int *pipe)
 		mid_pipe(shell, token, *pipe);
 	else if (is_last_pipe(token))
 		last_pipe(shell, token, *pipe);
-
 }

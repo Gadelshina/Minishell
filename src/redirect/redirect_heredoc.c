@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_heredoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 22:56:27 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 10:10:09 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:41:15 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static int	create_file(t_token *token)
 	{
 		len = ft_strlen(token->next->str);
 		if (!ft_strncmp((const char *)str, token->next->str, len + 1))
-			break;
+			break ;
 		ft_putendl_fd(str, fd);
 		free (str);
 		write(0, "< ", 2);
@@ -59,13 +59,12 @@ static int	create_file(t_token *token)
 	ft_close_fd(fd);
 	if (g_main.g_run)
 		return (0);
-	return (1);	
-	
+	return (1);
 }
 
-void execute_heredoc(t_main *shell, t_token *token)
+void	execute_heredoc(t_main *shell, t_token *token)
 {
-	pid_t pid;
+	pid_t	pid;
 
 	pid = fork();
 	if (pid == -1)
@@ -87,7 +86,7 @@ void execute_heredoc(t_main *shell, t_token *token)
 	}
 }
 
-int redirect_heredoc(t_main *shell, t_token *token, int *new_input)
+int	redirect_heredoc(t_main *shell, t_token *token, int *new_input)
 {
 	if ((*new_input) == 1)
 		prepare_input(shell, token);

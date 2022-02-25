@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multi_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:28:41 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 17:56:37 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:42:40 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_token	*get_prev_token(t_token *token)
 {
 	t_token	*res;
-	
+
 	if (!token->prev)
 		return (0);
 	else if (token->prev->type == PIPE)
@@ -68,7 +68,7 @@ static void	execute_child_mid(t_main *shell, t_token *token, int fd)
 int	first_pipe(t_main *shell, t_token *token, int fd)
 {
 	pid_t	parent;
-	
+
 	if (pipe(shell->fds[fd]) != 0)
 		return_err(shell);
 	parent = fork();
@@ -84,7 +84,7 @@ int	first_pipe(t_main *shell, t_token *token, int fd)
 int	mid_pipe(t_main *shell, t_token *token, int fd)
 {
 	pid_t	parent;
-	
+
 	if (pipe(shell->fds[fd]) != 0)
 		return_err(shell);
 	parent = fork();
@@ -97,7 +97,6 @@ int	mid_pipe(t_main *shell, t_token *token, int fd)
 	ft_close_fd(shell->fds[fd - 1][0]);
 	ft_close_fd(shell->fds[fd - 1][1]);
 	return (0);
-
 }
 
 int	last_pipe(t_main *shell, t_token *token, int fd)
@@ -126,6 +125,4 @@ int	last_pipe(t_main *shell, t_token *token, int fd)
 	ft_close_fd(shell->fds[fd][0]);
 	ft_close_fd(shell->fds[fd][1]);
 	return (0);
-
-
 }

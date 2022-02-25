@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirect_output.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 13:44:08 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/21 17:29:16 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:45:31 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,17 @@
 
 static void	prepare_output(t_main *shell, t_token *token)
 {
-	t_token *desired;
+	t_token	*desired;
 
 	desired = token->prev;
-	while(desired && desired->type != REDIR_OUT && desired->type != REDIR_OUT_2)
+	while (desired && desired->type != REDIR_OUT && \
+	desired->type != REDIR_OUT_2)
 		desired = desired->prev;
 	desired->skip = TRUE;
 	ft_close_fd(shell->fd_out);
 }
 
-int redirect_output(t_main *shell, t_token *token, int *new_output)
+int	redirect_output(t_main *shell, t_token *token, int *new_output)
 {
 	if (*new_output)
 		prepare_output(shell, token);
@@ -42,6 +43,6 @@ int redirect_output(t_main *shell, t_token *token, int *new_output)
 		(*new_output) = 1;
 	}
 	else
-		return (return_err)(shell);
+		return (return_err(shell));
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_pipes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 20:23:23 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 17:57:10 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:39:16 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	execute_child_first(t_main *shell, t_token *token, int fd)
 {
-	t_token *exec_token;
+	t_token	*exec_token;
 
 	exec_token = get_prev_token(token);
 	set_fd_first(shell, token, fd);
@@ -56,13 +56,12 @@ void	execute_child_left(t_main *shell, t_token *token, int fd)
 		free_env();
 		exit (g_main.g_return);
 	}
-		
 }
 
 void	execute_child_right(t_main *shell, t_token *token, int fd)
 
 {
-	t_token *exec_token;
+	t_token	*exec_token;
 
 	exec_token = token->next;
 	set_fd_last(shell, exec_token, fd);
@@ -75,13 +74,13 @@ void	execute_child_right(t_main *shell, t_token *token, int fd)
 		g_main.g_return = execute_builtins(shell, exec_token);
 		free_env();
 		exit (g_main.g_return);
-	}    
+	}
 }
 
 int	lonely_pipe(t_main *shell, t_token *token, int fd)
 {
-	pid_t   parent;
-	pid_t   cmd;
+	pid_t	parent;
+	pid_t	cmd;
 
 	if (pipe(shell->fds[0]) == -1)
 		return_err(shell);
