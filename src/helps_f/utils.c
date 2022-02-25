@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 12:57:42 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/22 20:53:00 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:11:05 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	ft_close_fd(int fd)
 		close (fd);
 }
 
-int count_pipes(t_main *shell)
+int	count_pipes(t_main *shell)
 {
-	int count;
-	t_token *token;
+	int		count;
+	t_token	*token;
 
 	token = shell->tokens;
 	count = 0;
@@ -34,7 +34,7 @@ int count_pipes(t_main *shell)
 	return (count);
 }
 
-void    check_status(int *status)
+void	check_status(int *status)
 {
 	int	ret;
 

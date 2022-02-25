@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   free_f2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/18 14:59:37 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/25 10:21:03 by aazrael          ###   ########.fr       */
+/*   Created: 2022/02/25 10:12:05 by aazrael           #+#    #+#             */
+/*   Updated: 2022/02/25 10:12:38 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_pwd(void)
+void	free_char_list(char **list)
 {
-    char    *str;
+	int	i;
 
-    str = getcwd(NULL, 0);
-    if (str)
-    {
-        ft_putendl_fd(str, 1);
-        free(str);
-    }
-    else
-        return (1);
-    return (0);
+	i = 0;
+	while (list[i])
+	{
+		free(list[i]);
+		list[i] = NULL;
+		i++;
+	}
+	free(list);
+	list = NULL;
 }

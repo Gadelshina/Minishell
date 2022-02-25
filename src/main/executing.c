@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 12:35:13 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 13:26:03 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:06:44 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int    are_there_pipes(t_main *shell)
+static int	are_there_pipes(t_main *shell)
 {
-	t_token *token;
+	t_token	*token;
 
 	token = shell->tokens;
 	while (token)
@@ -28,7 +28,7 @@ static int    are_there_pipes(t_main *shell)
 
 t_token	*search_next_token(t_token *token)
 {
-	t_token *ret;
+	t_token	*ret;
 	int		n_type;
 
 	ret = token->next;
@@ -36,10 +36,8 @@ t_token	*search_next_token(t_token *token)
 		return (NULL);
 	n_type = ret->type;
 	if (n_type == PIPE || n_type == REDIR_OUT || n_type == REDIR_OUT_2 \
-		|| token->type == PIPE)	
+		|| token->type == PIPE)
 		return (ret);
-	// if (token->type == REDIR_OUT || token->type == REDIR_OUT_2)
-	// 	ret = token->next;
 	if (token->type == REDIR_IN)
 		ret = ret->next;
 	else if (n_type == CMD || n_type == ARG)
@@ -48,14 +46,14 @@ t_token	*search_next_token(t_token *token)
 	return (ret);
 }
 
-static void loop(t_main *shell, int *pipe)
+static void	loop(t_main *shell, int *pipe)
 {
-	t_token *token;
+	t_token	*token;
 
 	token = shell->tokens;
 	if (!count_pipes(shell))
 		set_redirect(shell);
- 	if (fatal_err(shell))
+	if (fatal_err(shell))
 		return ;
 	while (token)
 	{
@@ -69,15 +67,14 @@ static void loop(t_main *shell, int *pipe)
 			continue ;
 		}
 		if (token->type == PIPE)
-			execute_pipe(shell,token, pipe);
-		
+			execute_pipe(shell, token, pipe);
 		if (token->type <= BUILTIN && !are_there_pipes(shell))
 			execute_token(shell, token);
 		token = search_next_token(token);
-	}       
+	}
 }
 
-static void wait_child(t_main *shell)
+static void	wait_child(t_main *shell)
 {
 	t_pid_t	*tmp;
 
@@ -95,7 +92,7 @@ static void wait_child(t_main *shell)
 
 void	executing(t_main *shell)
 {
-	int current_pipe;
+	int	current_pipe;
 
 	g_main.g_run = TRUE;
 	current_pipe = 0;

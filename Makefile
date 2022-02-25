@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+         #
+#    By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/07 14:11:37 by glukon            #+#    #+#              #
-#    Updated: 2022/02/24 17:35:22 by zarachne         ###   ########.fr        #
+#    Updated: 2022/02/25 10:13:14 by aazrael          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRCS =		src/main/main.c	src/main/sig.c src/main/env.c src/helps_f/err.c\
 			src/execution/execute_builtins.c src/execution/execute_cmd.c\
 			src/builtins/echo.c src/builtins/export.c src/builtins/unset.c\
 			src/pipe/execute_pipe.c src/pipe/fd.c src/pipe/multi_pipe.c\
-			src/pipe/handle_pipes.c src/pipe/handler_redirect.c src/execution/execute_bin.c\
+			src/pipe/handle_pipes.c src/pipe/handler_redirect.c src/execution/execute_bin.c \
+			src/helps_f/free_f2.c
 
 OBJS =		$(SRCS:.c=.o)
 

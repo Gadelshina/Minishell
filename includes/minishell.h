@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:25:56 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 17:15:01 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:00:28 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ typedef struct s_global
 	int	g_here_doc;
 }	t_global;
 
-t_global    g_main;
+t_global	g_main;
 
 typedef struct s_env
 {
@@ -110,110 +110,99 @@ void		init1_shell(t_main *shell);
 void		shell_err(t_main *shell);
 void		free_data(t_token *a_tokens, t_token *b_tokens);
 void		executing(t_main *shell);
-
-void	simple_cmd(char **argv);
-int		imple_cmd(char **argv);
-void	free_char_list(char **list);
-int		return_err(t_main *shell);
-
-void	exit_shell_err(t_main *shell);
-int		fatal_err(t_main *shell);
-void	malloc_err(void);
-int		set_redirect(t_main *shell);
-
-int		execute_builtins(t_main *shell, t_token *token);
-void	prepare_input(t_main *shell, t_token *token);
-
-void	execute_heredoc(t_main *shell, t_token *token);
-int		redirect_heredoc(t_main *shell, t_token *token, int *new_input);
-int		get_next_line(int fd, char **line);
-
-void	execute_token(t_main *shell, t_token *token);
-void	execve_cmd(t_token *token);
-t_token	*get_prev_token(t_token *token);
-
-void	free_tokens(t_token **token);
-void	free_arr(char **paths);
-void	execute_pipe(t_main *shell, t_token *token, int *pipe);
-
-int		redirect_output(t_main *shell, t_token *token, int *new_output);
-
-int		first_pipe(t_main *shell, t_token *token, int fd);
-int		mid_pipe(t_main *shell, t_token *token, int fd);
-int		last_pipe(t_main *shell, t_token *token, int fd);
-int		lonely_pipe(t_main *shell, t_token *token, int fd);
-
-void    clear_pid_struct(t_pid_t **first);
-void	add_pid_struct(t_pid_t **first, t_pid_t *new);
-t_pid_t	*new_pid_struct(pid_t pid);
-int		ctrl_d(t_main *shell, char *input);
-void    check_status(int *status);
-void	set_fd_first(t_main *shell, t_token *token, int fd);
-void	set_fd_last(t_main *shell, t_token *token, int fd);
-int		count_pipes(t_main *shell);
-int		token_has_redir_out(t_main *shell, t_token *token);
-int		token_has_redir_in(t_main *shell, t_token *token);
-
-void	execute_child_first(t_main *shell, t_token *token, int fd);
-void	execute_child_right(t_main *shell, t_token *token, int fd);
-void	execute_child_left(t_main *shell, t_token *token, int fd);
-
+void		simple_cmd(char **argv);
+int			imple_cmd(char **argv);
+void		free_char_list(char **list);
+int			return_err(t_main *shell);
+void		exit_shell_err(t_main *shell);
+int			fatal_err(t_main *shell);
+void		malloc_err(void);
+int			set_redirect(t_main *shell);
+int			execute_builtins(t_main *shell, t_token *token);
+void		prepare_input(t_main *shell, t_token *token);
+void		execute_heredoc(t_main *shell, t_token *token);
+int			redirect_heredoc(t_main *shell, t_token *token, int *new_input);
+int			get_next_line(int fd, char **line);
+void		execute_token(t_main *shell, t_token *token);
+void		execve_cmd(t_token *token);
+t_token		*get_prev_token(t_token *token);
+void		free_tokens(t_token **token);
+void		free_arr(char **paths);
+void		execute_pipe(t_main *shell, t_token *token, int *pipe);
+int			redirect_output(t_main *shell, t_token *token, int *new_output);
+int			first_pipe(t_main *shell, t_token *token, int fd);
+int			mid_pipe(t_main *shell, t_token *token, int fd);
+int			last_pipe(t_main *shell, t_token *token, int fd);
+int			lonely_pipe(t_main *shell, t_token *token, int fd);
+void		clear_pid_struct(t_pid_t **first);
+void		add_pid_struct(t_pid_t **first, t_pid_t *new);
+t_pid_t		*new_pid_struct(pid_t pid);
+int			ctrl_d(t_main *shell, char *input);
+void		check_status(int *status);
+void		set_fd_first(t_main *shell, t_token *token, int fd);
+void		set_fd_last(t_main *shell, t_token *token, int fd);
+int			count_pipes(t_main *shell);
+int			token_has_redir_out(t_main *shell, t_token *token);
+int			token_has_redir_in(t_main *shell, t_token *token);
+void		execute_child_first(t_main *shell, t_token *token, int fd);
+void		execute_child_right(t_main *shell, t_token *token, int fd);
+void		execute_child_left(t_main *shell, t_token *token, int fd);
 
 //parser
-char	*parser0(t_token **token, char *str);
-char	*parser1(char *str, char **array, int token_ct);
-int		parser2(char *str, int *sep_ct);
-int		check_leading_pipe(char *str);
-int		ft_isspace(int c);
-int		parser_error(int type, char ch);
-int		ft_issep(int c);
-int		handle_sep(char *str, int i, int *sep_ct);
-int		handle_pipe(char *str, int i, int *sep_ct);
-int		handle_redirection(char *str, int i, int *sep_ct);
-char	*handle_quotes(char *str, int *start);
-char	*handle_double_quotes(char *str, int *start);
-void	remove_quotes(char *str, int start, int end);
-char	*handle_bucks(char *str, int *start);
-char	*replace_bucks(char *str, int i, int *start, char *var_value);
-char	*remove_invalid_var_name(char *str, char *var_name, int *start);
-void	free_intermediate_strings(char *temp, char *part_1, char *part_2);
-char	*handle_invalid_name(char *str, int *start);
-void	add_to_array(char *str, char **array, t_parser *vars);
+char		*parser0(t_token **token, char *str);
+char		*parser1(char *str, char **array, int token_ct);
+int			parser2(char *str, int *sep_ct);
+int			check_leading_pipe(char *str);
+int			ft_isspace(int c);
+int			parser_error(int type, char ch);
+int			ft_issep(int c);
+int			handle_sep(char *str, int i, int *sep_ct);
+int			handle_pipe(char *str, int i, int *sep_ct);
+int			handle_redirection(char *str, int i, int *sep_ct);
+char		*handle_quotes(char *str, int *start);
+char		*handle_double_quotes(char *str, int *start);
+void		remove_quotes(char *str, int start, int end);
+char		*handle_bucks(char *str, int *start);
+char		*replace_bucks(char *str, int i, int *start, char *var_value);
+char		*remove_invalid_var_name(char *str, char *var_name, int *start);
+void		free_intermediate_strings(char *temp, char *part_1, char *part_2);
+char		*handle_invalid_name(char *str, int *start);
+void		add_to_array(char *str, char **array, t_parser *vars);
 
 //tokens
-void	create_tokens(t_token **token, char **array, int token_ct);
-void	ft_add_token(t_token **lst, t_token *new);
-t_token	*ft_new_token(void);
-t_token	*ft_last_token(t_token *lst);
-void	assign_type(t_token *token, char *str);
-int		is_builtin(char *str);
+void		create_tokens(t_token **token, char **array, int token_ct);
+void		ft_add_token(t_token **lst, t_token *new);
+t_token		*ft_new_token(void);
+t_token		*ft_last_token(t_token *lst);
+void		assign_type(t_token *token, char *str);
+int			is_builtin(char *str);
 
 //builtins
-int		ft_env(void);
-int		ft_pwd(void);
-int		ft_exit(t_token *token, t_main *shell);
-int		ft_cd(t_token *token);
-int		ft_export(t_token *token);
-int		ft_echo(t_token *token);
-int		ft_unset(t_token *token);
+int			ft_env(void);
+int			ft_pwd(void);
+int			ft_exit(t_token *token, t_main *shell);
+int			ft_cd(t_token *token);
+int			ft_export(t_token *token);
+int			ft_echo(t_token *token);
+int			ft_unset(t_token *token);
 
 //builtins_utils
-void	sort_env(char **arr, int size);
-int		export_error(char *str, int type);
-int		is_in_env(char *name);
-int		check_var(char *str);
+void		sort_env(char **arr, int size);
+int			export_error(char *str, int type);
+int			is_in_env(char *name);
+int			check_var(char *str);
 
 //environ
-char	**malloc_env(void);
-int		env_size(char **arr);
-char	**realloc_env(int diff, char *str);
-void	free_env(void);
-void	exit_child(void);
+char		**malloc_env(void);
+int			env_size(char **arr);
+char		**realloc_env(int diff, char *str);
+void		free_env(void);
+void		exit_child(void);
 
 //utils
-int		ft_strcmp(const char *s1, const char *s2);
-void	free_on_exit(char **input);
-char	*return_path(char **paths, char **ret_char);
-void	ft_close_fd(int fd);
+int			ft_strcmp(const char *s1, const char *s2);
+void		free_on_exit(char **input);
+char		*return_path(char **paths, char **ret_char);
+void		ft_close_fd(int fd);
 
 #endif

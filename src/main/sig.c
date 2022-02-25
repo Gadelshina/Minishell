@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 21:39:17 by svirgil           #+#    #+#             */
-/*   Updated: 2022/02/22 14:53:58 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:01:31 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,3 @@ void	ft_signal_heredoc(int code)
 	if (code == SIGQUIT)
 		return ;
 }
-

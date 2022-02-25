@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 08:48:57 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/23 16:27:14 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:06:11 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	delete_var(char **arr, char *str, int size)
 	j = 0;
 	while (i < size)
 	{
-		if (!ft_strncmp(str, __environ[i], len) && 
+		if (!ft_strncmp(str, __environ[i], len) && \
 			(__environ[i][len] == '=' || __environ[i][len] == '\0'))
 		{
 			free(__environ[i]);

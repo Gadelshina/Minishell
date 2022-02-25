@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:48:55 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 14:07:53 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:10:08 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	execute_last_cmd(t_main *shell, t_token *token)
 void	execve_cmd(t_token *token)
 {
 	char	**argv;
-	
+
 	argv = get_argv(token);
 	simple_cmd(argv);
 }

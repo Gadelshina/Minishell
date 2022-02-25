@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 10:43:31 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/22 18:58:21 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:13:36 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	get_next_line(int fd, char **line)
 	static char	*remainder;
 	char		*tmp;
 
-	  read_bytes = ft_check_error(&buf, fd, line);
+	read_bytes = ft_check_error(&buf, fd, line);
 	if (read_bytes < 0)
 		return (-1);
 	while (!ft_strchr(remainder, '\n') && read_bytes)

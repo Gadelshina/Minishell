@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_bin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 10:44:35 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/24 13:39:44 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 10:08:49 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,25 +30,25 @@ static char	**find_paths(char **env)
 	return (paths);
 }
 
-static void print_cmd_err(char **cmd)
+static void	print_cmd_err(char **cmd)
 {
 	ft_putstr_fd("minishell: command not found: ", 2);
 	ft_putendl_fd(cmd[0], 2);
 	free_arr(cmd);
 }
 
-static void exit_err(char **cmd)
+static void	exit_err(char **cmd)
 {
 	print_cmd_err(cmd);
 	exit(ERROR_STATUS);
 }
 
-static char *get_path(char **cmd, char **env)
+static char	*get_path(char **cmd, char **env)
 {
-	int     i;
-	char    *path;
-	char    *half_path;
-	char    **paths;
+	int		i;
+	char	*path;
+	char	*half_path;
+	char	**paths;
 
 	paths = find_paths(env);
 	if (!paths)
@@ -68,12 +68,11 @@ static char *get_path(char **cmd, char **env)
 		return (cmd[0]);
 	print_cmd_err(cmd);
 	exit (ERROR_STATUS);
-	
 }
 
-void    simple_cmd(char **argv)
+void	simple_cmd(char **argv)
 {
-	char    *path;
+	char	*path;
 
 	path = get_path(argv, __environ);
 	g_main.g_return = execve(path, argv, __environ);
