@@ -6,7 +6,7 @@
 /*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 21:39:17 by svirgil           #+#    #+#             */
-/*   Updated: 2022/02/25 10:01:31 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/25 12:54:57 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_sig(int code)
 		else if (code == SIGINT)
 		{
 			g_main.g_run = FALSE;
-			ft_putstr_fd("^C\n", 1);
+			ft_putstr_fd("\n", 1);
 		}
 	}
 }
