@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 21:28:41 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/25 09:45:46 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/25 21:33:32 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ t_token	*get_prev_token(t_token *token)
 	t_token	*res;
 
 	if (!token->prev)
-		return (0);
+		return (NULL);
 	else if (token->prev->type == PIPE)
 		return (token->prev);
 	else
 	{
 		res = token->prev;
-		while (res && res->type != PIPE)
+		while (res->prev && res->prev->type != PIPE)
 			res = res->prev;
 	}
 	if (res->skip)

@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 17:25:56 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/25 16:04:11 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/26 15:49:58 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,6 @@
 # define REDIR_OUT_2 5
 # define REDIR_IN 6
 # define REDIR_HEREDOC 7
-
-# define FALSE	0
-# define TRUE	1
 
 # define STDIN	0
 # define STDOUT	1
@@ -88,12 +85,6 @@ typedef struct s_global
 }	t_global;
 
 t_global	g_main;
-
-typedef struct s_env
-{
-	char			*str;
-	struct s_env	*next;
-}	t_env;
 
 typedef struct s_parser
 {

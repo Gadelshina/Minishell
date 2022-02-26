@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 19:53:11 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/25 09:46:09 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/26 16:20:06 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,5 @@ void	execute_pipe(t_main *shell, t_token *token, int *pipe)
 		mid_pipe(shell, token, *pipe);
 	else if (is_last_pipe(token))
 		last_pipe(shell, token, *pipe);
+	(*pipe)++;
 }

@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 20:23:23 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/25 09:40:40 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/26 17:09:52 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	execute_child_first(t_main *shell, t_token *token, int fd)
 	t_token	*exec_token;
 
 	exec_token = get_prev_token(token);
-	set_fd_first(shell, token, fd);
+	set_fd_first(shell, exec_token, fd);
 	if (shell->error)
 		exit_child();
-	if (exec_token->type == ARG || exec_token->type)
+	if (exec_token->type == ARG || exec_token->type == CMD)
 		execve_cmd(exec_token);
 	else
 	{
@@ -92,8 +92,9 @@ int	lonely_pipe(t_main *shell, t_token *token, int fd)
 	if (!parent)
 		execute_child_first(shell, token, fd);
 	cmd = fork();
+
 	if (cmd == -1)
-		shell_err(shell);
+		return_err(shell);
 	else
 		add_pid_struct(&shell->childs, new_pid_struct(cmd));
 	if (!cmd)
