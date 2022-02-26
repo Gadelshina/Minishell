@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sig.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 21:39:17 by svirgil           #+#    #+#             */
-/*   Updated: 2022/02/24 19:33:30 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/26 22:15:23 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	ft_sig(int code)
 		else if (code == SIGINT)
 		{
 			g_main.g_run = FALSE;
-			ft_putstr_fd("^C\n", 1);
+			ft_putstr_fd("\n", 1);
 		}
 	}
 }

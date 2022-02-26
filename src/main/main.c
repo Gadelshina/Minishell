@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/08 16:19:00 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/23 19:46:30 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/26 22:16:20 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(void)
 	signal(SIGINT, ft_sig);
 	signal(SIGQUIT, ft_sig);
 	rl_catch_signals = 0;
-	in = readline("$$:");
+	in = readline("Minishell:");
 	init0_shell(&shell, &array);
 	cycle = main_cycle(&shell, &in, &tokens, TRUE);
 	while (shell.exit == FALSE)

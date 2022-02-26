@@ -6,7 +6,7 @@
 /*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 14:35:54 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/22 21:49:46 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/26 22:16:40 by aazrael          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	init0_shell(t_main *shell, char ***arr)
 
 void	init1_shell(t_main *shell)
 {
-	shell->message = ft_strdup("$$:");
+	shell->message = ft_strdup("Minishell:");
 	shell->exit = FALSE;
 	shell->in = dup(STDIN);
 	if (!shell->in)
