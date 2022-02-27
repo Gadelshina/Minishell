@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 15:06:20 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/25 16:05:30 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/27 09:14:06 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,6 @@ int	get_next_line(int fd, char **line)
 	}
 	if (rd == 0)
 		return (ft_rd_zero(&text, line, buf));
-	ft_create_line(text, line, buf); 
+	ft_create_line(text, line, buf);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 20:23:23 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/26 17:09:52 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/27 09:12:23 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	lonely_pipe(t_main *shell, t_token *token, int fd)
 	if (!parent)
 		execute_child_first(shell, token, fd);
 	cmd = fork();
-
 	if (cmd == -1)
 		return_err(shell);
 	else

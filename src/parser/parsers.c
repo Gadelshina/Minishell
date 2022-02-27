@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsers.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aazrael <aazrael@student.21-school.ru>     +#+  +:+       +#+        */
+/*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/10 10:31:28 by aazrael           #+#    #+#             */
-/*   Updated: 2022/02/15 15:54:15 by aazrael          ###   ########.fr       */
+/*   Updated: 2022/02/27 10:37:33 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ char	*parser1(char *str, char **array, int token_ct)
 	}
 	if (str[var.last_space] != '\0')
 		array[var.j] = ft_substr(str, var.last_space, var.i - var.last_space);
-	else if (str[var.last_space] == '\0' && var.j < token_ct) //протестировать
+	else if (str[var.last_space] == '\0' && var.j < token_ct)
 		array[var.j] = ft_substr(str, var.last_space, var.i - var.last_space);
 	return (str);
 }

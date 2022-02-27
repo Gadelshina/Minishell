@@ -6,7 +6,7 @@
 /*   By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 22:56:27 by zarachne          #+#    #+#             */
-/*   Updated: 2022/02/25 13:47:07 by zarachne         ###   ########.fr       */
+/*   Updated: 2022/02/27 09:13:18 by zarachne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ static int	create_file(t_token *token)
 	int		fd;
 	int		len;
 	char	*str;
-
 
 	fd = open("here_doc", O_RDWR | O_CREAT | O_TRUNC, 0664);
 	if (fd < 0 || read(fd, 0, 0) < 0)
@@ -84,7 +83,6 @@ void	execute_heredoc(t_main *shell, t_token *token)
 			free_env();
 			exit (0);
 		}
-
 	}
 }
 
