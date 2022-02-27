@@ -6,7 +6,7 @@
 #    By: zarachne <zarachne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/07 14:11:37 by glukon            #+#    #+#              #
-#    Updated: 2022/02/26 16:15:14 by zarachne         ###   ########.fr        #
+#    Updated: 2022/02/27 10:51:15 by zarachne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,8 +37,6 @@ LIBFT =		libft/libft.a
 
 RM =		rm -f
 
-RDL_FLAGS =	
-
 all:		subsystem $(NAME)
 
 %.o:		%.c $(HEADER) $(LIBFT)
@@ -48,8 +46,8 @@ subsystem:
 			make -C libft
 
 $(NAME):	$(OBJS)
-			$(CC) $(CFLAGS) $^ -lreadline  -L libft -lft -o $(NAME)
-			@echo "\n ./$(NAME) has been compiled"
+			$(CC) $(CFLAGS) $^ -lreadline  -Llibft -lft -o $(NAME)
+			@echo "\033[49;34m \n ./$(NAME) has been compiled"
 			
 clean:
 			$(RM) $(OBJS)
@@ -58,7 +56,7 @@ clean:
 fclean:		clean
 			$(RM) $(NAME)
 			make fclean -C libft
-			@echo "fclean complete"
+			@echo "\033[49;34m fclean complete"
 
 re:			fclean all
 
