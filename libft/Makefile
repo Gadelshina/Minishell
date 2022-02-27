@@ -25,7 +25,6 @@ OBJ			= $(patsubst %.c,%.o,$(SRC))
 
 CMP			= gcc
 
-OPTFLAF		= 
 
 FLAGS		= -Wall -Wextra -Werror
 
@@ -35,7 +34,7 @@ $(NAME)		: $(OBJ)
 	ar rcs $(NAME) $?
 
 %.o			: %.c
-	$(CMP) $(FLAGS) $(OPTFLAF) -c $< -o $@
+	$(CMP) $(FLAGS) -c $< -o $@
 
 clean		:
 	@rm -f $(OBJ)
